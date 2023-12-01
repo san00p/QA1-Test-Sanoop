@@ -1,0 +1,16 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '3.1.x'
+
+  - script: |
+      npm install -g newman
+      newman run C:\Users\sanoop\QA1-Test-Sanoop\tests\postman\V2_QA1 run.postman_collection.json
+    displayName: 'Run Postman Tests'
